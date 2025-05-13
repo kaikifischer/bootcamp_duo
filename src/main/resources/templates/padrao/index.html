@@ -3,16 +3,23 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title th:text="${title}">Hotelaria fesa</title>
+        <title>BootCamp Duo: O melhor Bootcamp de Tecnologia</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
         <style>
             body {
-                background-color: #f8f8f8;
+                background-color: #121212;
+                color: #e0e0e0;
+                font-family: 'Roboto', sans-serif;
             }
+            .card-text {
+                color: black;
+            }
+
             .container {
                 margin-top: 20px;
             }
+
             .main-img {
                 width: 100%;
                 height: auto;
@@ -20,18 +27,20 @@
             .description {
                 padding: 20px 0;
             }
+
             footer {
-                background-color: #333;
-                color: white;
+                background-color: #1e1e1e;
+                color: #e0e0e0;
                 text-align: center;
                 padding: 10px;
                 margin-top: 20px;
             }
+
             .section-divider {
                 border: 0;
-                height: 0.5px;
-                background: #999;
-                background-image: linear-gradient(to right, #ccc, #333, #ccc);
+                height: 1px;
+                background: #444;
+                background-image: linear-gradient(to right, #333, #444, #333);
                 margin: 40px 0;
             }
 
@@ -47,17 +56,21 @@
                 margin-bottom: 20px;
             }
             .wine-red {
-                color: #cc0000;
+                color: #ff1744;
             }
+
             .gray {
-                color: #737373;
+                color: #9e9e9e;
             }
+
             .fancy-font {
-                font-family: 'Dancing Script', cursive;
+                font-family: 'Roboto Mono', monospace;
             }
+
             .font-size {
                 font-size: 1.5em;
             }
+
         </style>
         <link href="https://fonts.googleapis.com/css2?family=CustomFont:wght@400;700&display=swap" rel="stylesheet">
     </head>
@@ -71,19 +84,19 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/hotelaria-fesa">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/bootcamp-duo">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/hotelaria-fesa/acomodacoes">Games</a>
+                            <a class="nav-link" href="/games">Games</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="lazerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Mobile
                             </a>
                             <div class="dropdown-menu" aria-labelledby="lazerDropdown">
-                                <a class="dropdown-item" href="/hotelaria-fesa/lazer/externa">Android</a>
+                                <a class="dropdown-item" href="/bootcamp-duo/mobile-android">Android</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/hotelaria-fesa/lazer/interna">iOS</a>
+                                <a class="dropdown-item" href="/bootcamp-duo/mobile-ios">iOS</a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -171,16 +184,16 @@
         <div class="container">
             <div class="row mt-4">
                 <div class="col-md-4">
-                    <h3 class="wine-red fancy-font text-center">Hóspedes</h3>
-                    <p class="text-justify">Nosso hotel oferece uma experiência inesquecível para nossos hóspedes, com acomodações confortáveis e serviços personalizados. Desfrute de um atendimento exclusivo e de uma estadia repleta de comodidades, garantindo o máximo conforto e satisfação durante sua visita.</p>
+                    <h3 class="wine-red fancy-font text-center">Sobre o Bootcamp</h3>
+                    <p class="text-justify">Bem-vindo ao BootCamp Duo, onde transformamos aspirantes a desenvolvedores em profissionais qualificados. Nosso bootcamp oferece uma educação prática e intensiva em desenvolvimento web e mobile, focando nas tecnologias mais demandadas pela indústria.</p>
                 </div>
                 <div class="col-md-4">
-                    <h3 class="wine-red fancy-font text-center">Games</h3>
-                    <p class="text-justify">Nossas acomodações foram projetadas para oferecer o máximo de conforto e luxo. Cada quarto é equipado com modernas instalações, decoração elegante e vistas deslumbrantes. Relaxe e aproveite as facilidades exclusivas que garantem uma estadia perfeita.</p>
+                    <h3 class="wine-red fancy-font text-center">Nossos Serviços</h3>
+                    <p class="text-justify">Oferecemos programas de treinamento prático que cobrem desde os fundamentos até técnicas avançadas, orientados a projetos reais. Durante o bootcamp, você terá a oportunidade de trabalhar em projetos reais que simulam o ambiente de trabalho de um desenvolvedor profissional. Além disso, oferecemos treinamento em habilidades técnicas e interpessoais.</p>
                 </div>
                 <div class="col-md-4">
-                    <h3 class="wine-red fancy-font text-center">Inteligência Artificial (IA)</h3>
-                    <p class="text-justify">Descubra uma experiência gastronômica única em nosso bar e restaurante. Oferecemos uma seleção de pratos deliciosos preparados com ingredientes frescos e uma carta de bebidas sofisticada. Seja para um jantar formal ou um coquetel casual, nosso ambiente acolhedor é ideal para todas as ocasiões.</p>
+                    <h3 class="wine-red fancy-font text-center"> Objetivos</h3>
+                    <p class="text-justify">Nosso objetivo é capacitar nossos alunos com as habilidades necessárias para se tornarem desenvolvedores de sucesso. Acreditamos em uma educação acessível, prática e relevante, criando um ambiente de aprendizado inclusivo e colaborativo. Queremos que nossos alunos saiam do bootcamp com um portfólio impressionante e a confiança para prosperar na indústria de tecnologia.</p>
                 </div>
             </div>
             <hr class="section-divider">
@@ -188,43 +201,43 @@
 
         <div class="container">
             <div class="page-title">
-                <h1 class="wine-red fancy-font">Atrações Turísticas</h1>
+                <h1 class="wine-red fancy-font">Tecnologias e Oportunidades de Estudo</h1>
                 <hr class="section-divider">
             </div>
             <div class="row mt-4">
                 <div class="col-md-3">
-                    <img src="/images/home/turistica001.png" class="img-fluid" alt="Palácio Luxuoso">
-                    <p class="text-justify">Explore o esplendor arquitetônico de um palácio luxuoso, com detalhes intrincados e jardins exuberantes, perfeito para uma visita cultural e histórica.</p>
+                    <img src="/images/home/bootcamp001.png" class="img-fluid" alt="Introdução à Programação">
+                    <p class="text-justify">Aprenda os fundamentos da programação com aulas interativas e projetos práticos, ideal para iniciantes que desejam entrar no mundo da tecnologia.</p>
                 </div>
                 <div class="col-md-3">
-                    <img src="/images/home/turistica002.png" class="img-fluid" alt="Vinhedo Sofisticado">
-                    <p class="text-justify">Desfrute de uma experiência única em um vinhedo sofisticado, com paisagens deslumbrantes, degustação de vinhos de alta qualidade e um ambiente sereno.</p>
+                    <img src="/images/home/bootcamp002.png" class="img-fluid" alt="Desenvolvimento Web">
+                    <p class="text-justify">Desenvolva habilidades em HTML, CSS e JavaScript para criar websites modernos e responsivos, com foco em boas práticas e design intuitivo.</p>
                 </div>
                 <div class="col-md-3">
-                    <img src="/images/home/turistica003.png" class="img-fluid" alt="Marina de Iates de Luxo">
-                    <p class="text-justify">Visite uma marina de iates de luxo, onde você pode admirar iates modernos e desfrutar de lojas e restaurantes de alto padrão à beira-mar.</p>
+                    <img src="/images/home/bootcamp003.png" class="img-fluid" alt="Data Science">
+                    <p class="text-justify">Explore o mundo da ciência de dados, aprendendo a manipular grandes conjuntos de dados, criar visualizações e aplicar técnicas de machine learning.</p>
                 </div>
                 <div class="col-md-3">
-                    <img src="/images/home/turistica004.png" class="img-fluid" alt="Teatro Grandioso">
-                    <p class="text-justify">Assista a espetáculos magníficos em um teatro grandioso, com interior ornamentado, lustres imponentes e uma atmosfera de elegância e cultura.</p>
+                    <img src="/images/home/bootcamp004.png" class="img-fluid" alt="Desenvolvimento de Aplicativos Móveis">
+                    <p class="text-justify">Crie aplicativos móveis para Android e iOS, utilizando frameworks populares e práticas de desenvolvimento ágil para entregar soluções inovadoras.</p>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-md-3">
-                    <img src="/images/home/turistica005.png" class="img-fluid" alt="Museu de Arte Moderna">
-                    <p class="text-justify">Explore a criatividade e a inovação no Museu de Arte Moderna, com exposições interativas, arquitetura contemporânea e uma variedade de obras de arte fascinantes.</p>
+                    <img src="/images/home/bootcamp005.png" class="img-fluid" alt="Cybersecurity">
+                    <p class="text-justify">Aprenda sobre segurança da informação, incluindo técnicas de proteção de dados, análise de vulnerabilidades e implementação de medidas de segurança.</p>
                 </div>
                 <div class="col-md-3">
-                    <img src="/images/home/turistica006.png" class="img-fluid" alt="Rua com Inúmeros Restaurantes">
-                    <p class="text-justify">Descubra a diversidade culinária em uma rua repleta de restaurantes, oferecendo uma ampla variedade de sabores e uma experiência gastronômica vibrante.</p>
+                    <img src="/images/home/bootcamp006.png" class="img-fluid" alt="DevOps">
+                    <p class="text-justify">Descubra as práticas de DevOps para integração contínua e entrega contínua, automatizando processos e melhorando a colaboração entre equipes de desenvolvimento e operações.</p>
                 </div>
                 <div class="col-md-3">
-                    <img src="/images/home/turistica007.png" class="img-fluid" alt="Estádio de Futebol">
-                    <p class="text-justify">Explore a energia e a emoção de um estádio de futebol de classe mundial, com infraestrutura moderna e eventos esportivos de alto nível.</p>
+                    <img src="/images/home/bootcamp007.png" class="img-fluid" alt="Inteligência Artificial">
+                    <p class="text-justify">Mergulhe no campo da inteligência artificial, aprendendo sobre redes neurais, processamento de linguagem natural e desenvolvimento de algoritmos inteligentes.</p>
                 </div>
                 <div class="col-md-3">
-                    <img src="/images/home/turistica008.png" class="img-fluid" alt="Fonte Grandiosa">
-                    <p class="text-justify">Maravilhe-se com a beleza de uma fonte grandiosa, situada em um parque paisagístico, perfeita para um passeio relaxante e fotos memoráveis.</p>
+                    <img src="/images/home/bootcamp008.png" class="img-fluid" alt="Blockchain">
+                    <p class="text-justify">Explore a tecnologia blockchain, entendendo seu funcionamento, aplicações em criptomoedas e potencial para transformar diversos setores.</p>
                 </div>
             </div>
         </div>

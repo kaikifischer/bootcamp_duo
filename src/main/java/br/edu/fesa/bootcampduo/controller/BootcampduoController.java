@@ -1,4 +1,4 @@
-package br.cefsa.edu.br.bootcampduo.controller;
+package br.edu.fesa.bootcampduo.controller;
         
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,15 +14,15 @@ public class BootcampduoController {
 
     @GetMapping("/games")
     public String games(){
-        return "/bootcamp/games";
+        return "bootcamp/games";
     }
 
-    @GetMapping("/mobile/android")
+    @GetMapping("/mobile-android")
     public String mobileAndroid() {
         return "/bootcamp/mobile-android";
     }
 
-    @GetMapping("/mobile/ios")
+    @GetMapping("/mobile-ios")
     public String mobileIos() {
         return "/bootcamp/mobile-ios";
     }
@@ -32,17 +32,17 @@ public class BootcampduoController {
         return "/bootcamp/devops";
     }
     
-    @GetMapping("/website/html")
+    @GetMapping("/website-html")
     public String websiteHtml() {
         return "/bootcamp/website-html";
     }
 
-    @GetMapping("/website/css")
+    @GetMapping("/website-css")
     public String websiteCss() {
         return "/bootcamp/website-css";
     }
     
-    @GetMapping("/website/javascript")
+    @GetMapping("/website-javascript")
     public String websiteJavascript() {
         return "/bootcamp/website-javascript";
     }
