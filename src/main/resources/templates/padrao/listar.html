@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Lista de Padrões</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .container {
+                margin-top: 40px;
+            }
+            h1 {
+                font-size: 1.5rem;
+                color: #333;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 300;
+                border-bottom: 1px solid #ddd;
+                padding-bottom: 10px;
+                margin-bottom: 20px;
+            }
+            .btn-primary {
+                margin-right: 10px;
+            }
+            table {
+                margin-top: 20px;
+            }
+            th, td {
+                text-align: center;
+                vertical-align: middle;
+            }
+            .btn-warning {
+                margin-right: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Lista de Padrões</h1>
+            <div class="d-flex justify-content-between mb-3">
+                <a href="/hotelaria-ibmec/padrao/novo" class="btn btn-primary">Inserir</a>
+                <a href="#" th:href="@{/hotelaria-ibmec}" class="btn btn-info">Principal</a>
+            </div>
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Percentual</th>
+                        <th colspan="2">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="padrao : ${padroes}">
+                        <td th:text="${padrao.idPadrao}"></td>
+                        <td th:text="${padrao.nome}"></td>
+                        <td th:text="${padrao.percentual}"></td>
+                        <td>
+                            <a th:href="@{/hotelaria-ibmec/padrao/editar/{id}(id=${padrao.idPadrao})}" class="btn btn-warning btn-sm">Editar</a>
+                        </td>
+                        <td>
+                            <a th:href="@{/hotelaria-ibmec/padrao/remover/{id}(id=${padrao.idPadrao})}" class="btn btn-danger btn-sm">Remover</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Bootstrap JS and dependencies -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>

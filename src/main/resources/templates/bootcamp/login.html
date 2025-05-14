@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                background-color: #121212;
+                color: #e0e0e0;
+                font-family: 'Roboto', sans-serif;
+            }
+            .card-text {
+                color: black;
+            }
+            .container {
+                margin-top: 20px;
+            }
+
+            .main-img {
+                width: 100%;
+                height: auto;
+            }
+
+            .description {
+                padding: 20px 0;
+            }
+
+            footer {
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+                text-align: center;
+                padding: 10px;
+                margin-top: 20px;
+            }
+
+            .section-divider {
+                border: 0;
+                height: 1px;
+                background: #444;
+                background-image: linear-gradient(to right, #333, #444, #333);
+                margin: 40px 0;
+            }
+
+            .page-title {
+                text-align: center;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                color: #00bcd4;
+            }
+
+            .wine-red {
+                color: #ff1744;
+            }
+
+            .gray {
+                color: #9e9e9e;
+            }
+
+            .fancy-font {
+                font-family: 'Roboto Mono', monospace;
+            }
+
+            .font-size {
+                font-size: 1.5em;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="header"></div>
+
+        <div class="container">
+            <div class="card login-card mb-4">
+                <div class="card-body">
+                    <form action="/bootcamp-duo/login" method="post">
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" class="form-control" id="email" name="email" required placeholder="Digite seu e-mail">
+                        </div>
+                        <div class="form-group">
+                            <label for="senha">Senha</label>
+                            <input type="password" class="form-control" id="senha" name="senha" required placeholder="Digite sua senha">
+                        </div>
+                        <button type="submit" class="btn btn-custom btn-block mt-3">Entrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <div id="footer"></div>
+
+        <script>
+            // Importa header e footer
+            fetch('/header.html')
+                    .then(response => response.text())
+                    .then(data => document.getElementById('header').innerHTML = data);
+            fetch('/footer.html')
+                    .then(response => response.text())
+                    .then(data => document.getElementById('footer').innerHTML = data);
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>

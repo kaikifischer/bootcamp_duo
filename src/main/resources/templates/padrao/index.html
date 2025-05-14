@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BootCamp Duo: O melhor Bootcamp de Tecnologia</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+        <style>
+            body {
+                background-color: #121212;
+                color: #e0e0e0;
+                font-family: 'Roboto', sans-serif;
+            }
+            .card-text {
+                color: black;
+            }
+
+            .container {
+                margin-top: 20px;
+            }
+
+            .main-img {
+                width: 100%;
+                height: auto;
+            }
+            .description {
+                padding: 20px 0;
+            }
+
+            footer {
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+                text-align: center;
+                padding: 10px;
+                margin-top: 20px;
+            }
+
+            .section-divider {
+                border: 0;
+                height: 1px;
+                background: #444;
+                background-image: linear-gradient(to right, #333, #444, #333);
+                margin: 40px 0;
+            }
+
+            /* Estilo customizado para reduzir a altura do carrossel */
+            .carousel-item img {
+                height: 400px;
+                object-fit: cover;
+            }
+
+            .page-title {
+                text-align: center;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            .wine-red {
+                color: #ff1744;
+            }
+
+            .gray {
+                color: #9e9e9e;
+            }
+
+            .fancy-font {
+                font-family: 'Roboto Mono', monospace;
+            }
+
+            .font-size {
+                font-size: 1.5em;
+            }
+
+        </style>
+        <link href="https://fonts.googleapis.com/css2?family=CustomFont:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">bootcamp-duo</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/bootcamp-duo">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/games">Games</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="lazerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Mobile
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="lazerDropdown">
+                                <a class="dropdown-item" href="/bootcamp-duo/mobile-android">Android</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/bootcamp-duo/mobile-ios">iOS</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/bootcamp-duo/devops">Devops</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="businessDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                WebSite
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="businessDropdown">
+                                <a class="dropdown-item" href="/bootcamp-duo/website-html">HTML</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/bootcamp-duo/website-css">CSS</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/bootcamp-duo/website-javascript">JavaScript</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/bootcamp-duo/inteligencia-artificial">Inteligência Artificial (IA)</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Usuário" aria-label="Usuário">
+                        <input class="form-control mr-sm-2" type="password" placeholder="Senha" aria-label="Senha">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Enviar</button>
+                    </form>
+                </div>
+            </nav>
+        </header>
+
+
+        <div class="container mt-4">
+            <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="2"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="3"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="4"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="5"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="6"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="7"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="8"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="9"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="/images/html/hotel001.png" class="d-block w-100" alt="Recepção do Hotel">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/images/games/acomodacoes003.png" class="d-block w-100" alt="Quarto Luxo">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/images/mobile/android/externa001.png" class="d-block w-100" alt="Piscina Éden - Área Externa">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/images/inteligenciaartificial/restaurante001.png" class="d-block w-100" alt="Restaurante Lumière 4">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/images/bootcamp/hotel003.png" class="d-block w-100" alt="Fachada do Hotel">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/images/css/sala-reunioes001.png" class="d-block w-100" alt="Sala de Reunião Principal">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/images/javascript/teatro004.png" class="d-block w-100" alt="Teatro Clássico">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/images/devops/bar001.png" class="d-block w-100" alt="Sky Bar">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="container">
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <h3 class="wine-red fancy-font text-center">Sobre o Bootcamp</h3>
+                    <p class="text-justify">Bem-vindo ao BootCamp Duo, onde transformamos aspirantes a desenvolvedores em profissionais qualificados. Nosso bootcamp oferece uma educação prática e intensiva em desenvolvimento web e mobile, focando nas tecnologias mais demandadas pela indústria.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="wine-red fancy-font text-center">Nossos Serviços</h3>
+                    <p class="text-justify">Oferecemos programas de treinamento prático que cobrem desde os fundamentos até técnicas avançadas, orientados a projetos reais. Durante o bootcamp, você terá a oportunidade de trabalhar em projetos reais que simulam o ambiente de trabalho de um desenvolvedor profissional. Além disso, oferecemos treinamento em habilidades técnicas e interpessoais.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="wine-red fancy-font text-center"> Objetivos</h3>
+                    <p class="text-justify">Nosso objetivo é capacitar nossos alunos com as habilidades necessárias para se tornarem desenvolvedores de sucesso. Acreditamos em uma educação acessível, prática e relevante, criando um ambiente de aprendizado inclusivo e colaborativo. Queremos que nossos alunos saiam do bootcamp com um portfólio impressionante e a confiança para prosperar na indústria de tecnologia.</p>
+                </div>
+            </div>
+            <hr class="section-divider">
+        </div>
+
+        <div class="container">
+            <div class="page-title">
+                <h1 class="wine-red fancy-font">Tecnologias e Oportunidades de Estudo</h1>
+                <hr class="section-divider">
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <img src="/images/home/bootcamp001.png" class="img-fluid" alt="Introdução à Programação">
+                    <p class="text-justify">Aprenda os fundamentos da programação com aulas interativas e projetos práticos, ideal para iniciantes que desejam entrar no mundo da tecnologia.</p>
+                </div>
+                <div class="col-md-3">
+                    <img src="/images/home/bootcamp002.png" class="img-fluid" alt="Desenvolvimento Web">
+                    <p class="text-justify">Desenvolva habilidades em HTML, CSS e JavaScript para criar websites modernos e responsivos, com foco em boas práticas e design intuitivo.</p>
+                </div>
+                <div class="col-md-3">
+                    <img src="/images/home/bootcamp003.png" class="img-fluid" alt="Data Science">
+                    <p class="text-justify">Explore o mundo da ciência de dados, aprendendo a manipular grandes conjuntos de dados, criar visualizações e aplicar técnicas de machine learning.</p>
+                </div>
+                <div class="col-md-3">
+                    <img src="/images/home/bootcamp004.png" class="img-fluid" alt="Desenvolvimento de Aplicativos Móveis">
+                    <p class="text-justify">Crie aplicativos móveis para Android e iOS, utilizando frameworks populares e práticas de desenvolvimento ágil para entregar soluções inovadoras.</p>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <img src="/images/home/bootcamp005.png" class="img-fluid" alt="Cybersecurity">
+                    <p class="text-justify">Aprenda sobre segurança da informação, incluindo técnicas de proteção de dados, análise de vulnerabilidades e implementação de medidas de segurança.</p>
+                </div>
+                <div class="col-md-3">
+                    <img src="/images/home/bootcamp006.png" class="img-fluid" alt="DevOps">
+                    <p class="text-justify">Descubra as práticas de DevOps para integração contínua e entrega contínua, automatizando processos e melhorando a colaboração entre equipes de desenvolvimento e operações.</p>
+                </div>
+                <div class="col-md-3">
+                    <img src="/images/home/bootcamp007.png" class="img-fluid" alt="Inteligência Artificial">
+                    <p class="text-justify">Mergulhe no campo da inteligência artificial, aprendendo sobre redes neurais, processamento de linguagem natural e desenvolvimento de algoritmos inteligentes.</p>
+                </div>
+                <div class="col-md-3">
+                    <img src="/images/home/bootcamp008.png" class="img-fluid" alt="Blockchain">
+                    <p class="text-justify">Explore a tecnologia blockchain, entendendo seu funcionamento, aplicações em criptomoedas e potencial para transformar diversos setores.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <hr class="section-divider"> 
+
+        <!-- Footer -->
+        <footer class="bg-light text-center text-lg-start">
+            <div class="container p-4">
+                <div class="row">
+                    <!-- Informações de Contato -->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase gray">Contato</h5>
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="#!" class="text-dark">Estr. dos Alvarengas, 4001 - Alvarenga, São Bernardo do Campo - SP, 09850-550
+</a></li>
+                            <li><a href="#!" class="text-dark">Telefone: 0800 771 8020</a></li>
+                            <li><a href="mailto:contato@fesa.edu.br" class="text-dark">Email: contato@fesa.edu.br</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Links Úteis -->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase gray">Links Úteis</h5>
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="#!" class="text-dark">Home</a></li>
+                            <li><a href="#!" class="text-dark">Sobre</a></li>
+                            <li><a href="#!" class="text-dark">Serviços</a></li>
+                            <li><a href="#!" class="text-dark">Contato</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase gray">Newsletter</h5>
+                        <form action="#">
+                            <div class="form-outline form-white mb-4">
+                                <input type="email" id="form5Example2" class="form-control" />
+                                <label class="form-label" for="form5Example2">Seu Email</label>
+                            </div>
+                            <button type="submit" class="btn btn-dark btn-block mb-4">Inscreva-se</button>
+                        </form>
+                    </div>
+
+                    <!-- Redes Sociais -->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase gray">Siga-nos</h5>
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="https://www.instagram.com/fsalvadorarena/" class="text-dark" target="_blank">Instagram</a></li>
+                            <li><a href="https://facebook.com/fesa" class="text-dark" target="_blank">Facebook</a></li>
+                            <li><a href="https://www.linkedin.com/school/faculdade-engenheiro-salvador-arena" class="text-dark" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://www.youtube.com/fesa" class="text-dark" target="_blank">YouTube</a></li>
+                            <li><a href="https://twitter.com/fesa_oficial?lang=en" class="text-dark" target="_blank">Twitter</a></li>
+                            <li><a href="https://www.tiktok.com/@fesa.oficial" class="text-dark" target="_blank">TikTok</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2024 Copyright<br/>
+                <a class="text-dark" href="https://fesa.edu.br/">fesa.edu.br</a>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>
