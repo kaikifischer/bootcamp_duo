@@ -24,12 +24,12 @@ public class AuthorizationService implements UserDetailsService {
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        //forma correta -> return repository.findByLogin(username);
-        return org.springframework.security.core.userdetails.User
-            .withUsername(username)
-            .password("{noop}dummy") // {noop} indica senha sem codificação
-            .roles("USER")
-            .build();
+        return repository.findByLogin(username);
+        //return org.springframework.security.core.userdetails.User
+        //    .withUsername(username)
+        //    .password("{noop}dummy") // {noop} indica senha sem codificação
+        //    .roles("USER")
+        //    .build();
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

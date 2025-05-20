@@ -61,6 +61,11 @@ public class BootcampduoController {
     public String registrar() {
         return "/bootcamp/registrar";
     }
+    
+    @GetMapping("/")
+    public String redirectToBootcampDuo() {
+        return "redirect:/bootcampduo";
+    }
 }
 
 
