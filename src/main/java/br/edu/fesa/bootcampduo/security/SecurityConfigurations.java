@@ -33,7 +33,7 @@ public class SecurityConfigurations {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST,"/auth/register").permitAll()
-                        .requestMatchers("/",
+                        .requestMatchers("/**",
                                 "/bootcamp-duo/**",
                                 "/footer.html",
                                 "/header.html",
@@ -46,15 +46,5 @@ public class SecurityConfigurations {
                         .anyRequest().authenticated())
                 .headers(headers -> headers.disable())
                 .build();
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
-        return authenticationConfiguration.getAuthenticationManager();
-    }
-    
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
     }
 }

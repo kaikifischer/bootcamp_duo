@@ -5,17 +5,17 @@
 package br.edu.fesa.bootcampduo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import br.edu.fesa.bootcampduo.model.UsuarioModel;
+import br.edu.fesa.bootcampduo.model.FuncionarioModel;
+import java.util.List;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.userdetails.UserDetails;
 /**
  *
  * @author Kaiki
  */
-public interface UsuarioRepository extends JpaRepository<UsuarioModel, String> {
-    UserDetails findByNome(String nome);;
+public interface FuncionarioRepository extends JpaRepository<FuncionarioModel, String> {
+    UserDetails findByLogin(String id);
     
-    @Query("SELECT u FROM UsuarioModel u WHERE u.email = :email AND u.senha = :senha")
-    UsuarioModel login(@Param("email") String email, @Param("senha") String senha);
+    @Query("SELECT f FROM FuncionarioModel f")
+    public List<FuncionarioModel> lista(); 
 }

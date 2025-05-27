@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="painel :: header">
+    <!-- Cabeçalho será substituído via fragmento -->
+</head>
+
+<body>
+    <!-- Navbar (geralmente dentro do body) -->
+    <div th:replace="painel :: navbar"></div>
+
+    <!-- Sidebar (geralmente dentro do body, mas fora da div content) -->
+    <div th:replace="painel :: sidebar"></div>
+
+    <!-- Conteúdo principal com margem para o sidebar -->
+    <div class="content" style="margin-left: 250px;">
+        <br>
+        <div>
+            <h3>Controle de Funcionários</h3>
+        </div>
+        <br>
+        <div>
+            <button onclick="window.location.href='/cadastrarFuncionario'" type="button" class="btn btn-primary btn-lg btn-square">Cadastrar Funcionário</button>
+        </div>
+        <br>
+        <div>
+            <button onclick="window.location.href='/listarFuncionarios'" type="button" class="btn btn-primary btn-lg btn-square">Listar Funcionários</button>
+        </div>
+    </div>
+
+    <!-- Scripts JavaScript ao final do corpo -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+        new Chartist.Line('#traffic-chart', {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            series: [[23000, 25000, 19000, 34000, 56000, 64000]]
+        }, {
+            low: 0,
+            showArea: true
+        });
+    </script>
+</body>
+</html>

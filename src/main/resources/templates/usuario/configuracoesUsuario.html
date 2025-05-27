@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
+    <!-- Meta tags e links para CSS -->
+</head>
+<body>
+    <div th:replace="painel :: navbar">
+        <!-- Incluindo o fragmento da barra de navegação -->
+    </div>
+
+    <div th:replace="painel :: sidebar">
+        <!-- Incluindo o fragmento da barra lateral -->
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="container mt-5">
+        <!-- Título e campos de configurações -->
+    </div>
+
+    <!-- Botão "Cadastrar Pessoa" -->
+    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <button type="button" class="btn btn-primary">Cadastrar Pessoa</button>
+    </div>
+
+    <!-- Painel lateral -->
+    <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+        <!-- Conteúdo do painel lateral -->
+    </nav>
+
+    <!-- Scripts JavaScript -->
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="painel :: header">
+<!-- Incluindo o fragmento do cabeçalho -->
+</head>
+<body>
+
+    <div class="content" style="margin-left: 250px;">
+        <!-- Adicionando margem à direita para o painel lateral -->
+        <div th:replace="painel :: navbar">
+            <!-- Incluindo o fragmento da barra de navegação -->
+        </div>
+
+        <div th:replace="painel :: sidebar">
+            <!-- Incluindo o fragmento da barra lateral -->
+        </div>
+        <br>
+        <div>
+            <h1>Lista de Funcionários</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Data de Nascimento</th>
+                        <th>Escolaridade</th>                        
+                        <th>Endereço</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="funcionario : ${funcionarios}">
+                        <td th:text="${funcionario.id}">ID</td>
+                        <td th:text="${funcionario.nome}">Nome</td>
+                        <td th:text="${funcionario.cpf}">cpf</td>
+                        <td th:text="${funcionario.dataDeNascimento}">dataNascimento</td>
+                        <td th:text="${funcionario.escolaridade}">escolaridade</td>
+                        <td th:text="${funcionario.endereco}">endereco</td>                                                
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Scripts JavaScript ao final do corpo do documento -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+        new Chartist.Line('#traffic-chart',
+                {
+                    labels : [ 'January', 'February', 'March', 'April', 'May',
+                            'June' ],
+                    series : [ [ 23000, 25000, 19000, 34000, 56000, 64000 ] ]
+                }, {
+                    low : 0,
+                    showArea : true
+                });
+    </script>
+</body>
+</html>
