@@ -4,21 +4,24 @@ package br.edu.fesa.bootcampduo.model;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
-
 /**
  *
  * @author Kaiki
  */
-
+import br.edu.fesa.bootcampduo.Enum.UsuarioRole;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.UUID;
 
 @Entity
-@Table(name = "users")
-public class UsuarioModel {
+@Table(name = "users") // Renomeei para "users" que é um nome comum para tabelas de usuário com Spring Security
+public class UsuarioModel implements UserDetails {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -27,16 +30,31 @@ public class UsuarioModel {
     private UUID id;
 
     @Column(nullable = false)
-    private String nome;  // corresponde ao input name="nome"
+    private String nome;
 
     @Column(nullable = false, unique = true)
-    private String email; // corresponde ao input name="email"
+    private String email; // Será usado como username
 
     @Column(nullable = false)
-    private String senha; // corresponde ao input name="senha"
+    private String senha;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "ROLE", nullable = false) // Nome da coluna explícito em maiúsculo
+    private UsuarioRole role;
+
+    // Construtor padrão (necessário para JPA)
+    public UsuarioModel() {
+    }
+
+    // Construtor para facilitar a criação
+    public UsuarioModel(String nome, String email, String senha, UsuarioRole role) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.role = role;
+    }
 
     // Getters e Setters
-
     public UUID getId() {
         return id;
     }
@@ -67,5 +85,50 @@ public class UsuarioModel {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public UsuarioRole getRole() {
+        return role;
+    }
+
+    public void setRole(UsuarioRole role) {
+        this.role = role;
+    }
+
+    // Implementação dos métodos da interface UserDetails
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // O Spring Security espera que as roles comecem com "ROLE_"
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role.name()));
+    }
+
+    @Override
+    public String getPassword() {
+        return this.senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email; // Usando email como username
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true; // Pode adicionar lógica se necessário
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true; // Pode adicionar lógica se necessário
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true; // Pode adicionar lógica se necessário
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true; // Pode adicionar lógica se necessário
     }
 }

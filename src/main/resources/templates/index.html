@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="painel :: header">
-        <!-- O conteúdo será substituído pelo fragmento 'header' -->
-    </head>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> <head th:replace="~{painel :: header}"> </head>
 
     <body>
 
-        <!-- Navbar e Sidebar -->
-        <div th:replace="painel :: navbar"></div>
-        <div th:replace="painel :: sidebar"></div>
+        <div th:replace="~{painel :: navbar}"></div>
+        <div th:replace="~{painel :: sidebar}"></div>
 
-        <!-- Conteúdo principal -->
         <div class="content" style="margin-left: 250px;">
             <div class="container mt-4">
                 <h3>Dashboard</h3>
-                <!-- Local onde o gráfico vai aparecer -->
                 <div id="traffic-chart" class="ct-chart ct-major-tenth"></div>
+
+                <div sec:authorize="hasRole('ROLE_ADMIN')" class="mt-3">
+                    <p class="text-danger">Conteúdo visível apenas para Administradores.</p>
+                </div>
+                <div sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" class="mt-3">
+                    <p class="text-info">Conteúdo visível para Usuários e Administradores.</p>
+                </div>
+
             </div>
         </div>
 
-        <!-- Scripts JS ao final do body -->
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
                 integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
@@ -32,17 +33,31 @@
 
         <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-        <!-- Injetando dados do backend no JavaScript com Thymeleaf -->
         <script th:inline="javascript">
             /*<![CDATA[*/
-            var seriesData = [[${dados}]];
-            new Chartist.Line('#traffic-chart', {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-                series: seriesData
-            }, {
-                low: 0,
-                showArea: true
-            });
+            // A variável 'dados' precisa ser populada pelo DashboardController
+            // Se não for mais populada, este gráfico pode não funcionar como esperado.
+            var seriesData = /*[[${dados}]]*/ []; // Fornece um array vazio como fallback se 'dados' for null
+            if (seriesData && seriesData.length > 0) {
+                new Chartist.Line('#traffic-chart', {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                    series: seriesData
+                }, {
+                    low: 0,
+                    showArea: true
+                });
+            } else {
+                // Opcional: exibir uma mensagem ou um gráfico padrão se não houver dados
+                console.warn("Dados para o gráfico não foram fornecidos ou estão vazios.");
+                // Exemplo de dados padrão para o gráfico
+                new Chartist.Line('#traffic-chart', {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                    series: [[0, 0, 0, 0, 0, 0]] // Dados zerados como exemplo
+                }, {
+                    low: 0,
+                    showArea: true
+                });
+            }
             /*]]>*/
         </script>
 

@@ -4,18 +4,16 @@
  */
 package br.edu.fesa.bootcampduo.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import br.edu.fesa.bootcampduo.model.UsuarioModel;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.userdetails.UserDetails;
 /**
  *
  * @author Kaiki
  */
-public interface UsuarioRepository extends JpaRepository<UsuarioModel, String> {
-    UserDetails findByNome(String nome);;
-    
-    @Query("SELECT u FROM UsuarioModel u WHERE u.email = :email AND u.senha = :senha")
-    UsuarioModel login(@Param("email") String email, @Param("senha") String senha);
+import br.edu.fesa.bootcampduo.model.UsuarioModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.UUID;
+
+public interface UsuarioRepository extends JpaRepository<UsuarioModel, UUID> {
+
+    UsuarioModel findByEmail(String email);
+
 }

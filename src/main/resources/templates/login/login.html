@@ -1,53 +1,57 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  
-  <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"> <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-    body {
-      font-family: 'Inter', sans-serif; /* Aplica a fonte Inter com fallback para fontes sans-serif */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #6DC5D1;
-    }
-    .login-container {
-      width: 100%;
-      max-width: 400px;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 10px 10px 10px 10px rgba(0.1, 0.1, 0.1, 0.1);
-      background-color: #ffffff;
-    }
-  </style>
-</head>
-<body>
-  <div class="login-container">
-    <h2 class="text-center mb-4">Login</h2>
-    <form action="/logar" method="POST">
-      <div class="form-group">
-        <label for="username">E-mail</label>
-        <input type="text" class="form-control" id="username" name=email placeholder="Digite seu nome de usuário">
-      </div>
-      <div class="form-group">
-        <label for="password">Senha</label>
-        <input type="password" class="form-control" id="password" name=senha placeholder="Digite sua senha">
-      </div>
-      <button type="submit" class="btn btn-primary btn-block">Entrar</button><br>
-      <a href="/cadastrarUsuario">Registrar-se</a>
-      <div th:if="${erro != null}" th:text="${erro}" class="alert alert-danger" role="alert"></div>
-    </form>
-  </div>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-  <!-- Scripts do Bootstrap -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+            body {
+                font-family: 'Inter', sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: #6DC5D1;
+            }
+            .login-container {
+                width: 100%;
+                max-width: 400px;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 10px 10px 10px 10px rgba(0.1, 0.1, 0.1, 0.1);
+                background-color: #ffffff;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="login-container">
+            <h2 class="text-center mb-4">Login</h2>
+
+            <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                E-mail ou senha inválidos.
+            </div>
+
+            <div th:if="${param.logout}" class="alert alert-success" role="alert">
+                Você foi desconectado com sucesso.
+            </div>
+
+            <div th:if="${mensagemSucesso}" th:text="${mensagemSucesso}" class="alert alert-success" role="alert"></div>
+
+            <form th:action="@{/logar}" method="POST"> <div class="form-group">
+                    <label for="username">E-mail</label> <input type="text" class="form-control" id="username" name="email" placeholder="Digite seu e-mail"> </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" class="form-control" id="password" name="senha" placeholder="Digite sua senha"> </div>
+                <button type="submit" class="btn btn-primary btn-block">Entrar</button><br>
+                <a href="/cadastrarUsuario">Registrar-se</a>
+            </form>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
 </html>
