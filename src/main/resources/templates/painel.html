@@ -68,33 +68,31 @@
                 </button>
             </div>
             <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
-                <div class="dropdown" sec:authorize="isAuthenticated()">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        Olá, <span sec:authentication="principal.nome">Nome do Usuário</span> </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" th:href="@{/configuracoes}">Configurações</a></li>
-                        <li><a class="dropdown-item" href="#">Avisos</a></li>
-                        <li>
-                            <form th:action="@{/sair}" method="post" class="d-inline">
-                                <button type="submit" class="dropdown-item" style="border:none; background:none; cursor:pointer; padding: 0.25rem 1.5rem; display: block; width: 100%; text-align: left;">
-                                    Sair
-                                </button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-                <div sec:authorize="!isAuthenticated()">
-                    <a class="btn btn-primary" th:href="@{/login}">Entrar</a>
+                <div sec:authorize="isAuthenticated()">
+                    <span class="btn btn-secondary disabled">
+                        Olá, <span sec:authentication="principal.nome">Nome do Usuário</span>
+                    </span>
                 </div>
             </div>
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Teste Dropdown
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Ação 1</a></li>
-                    <li><a class="dropdown-item" href="#">Ação 2</a></li>
-                </ul>
+
+            <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Opções
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" th:href="@{/configuracoes}">Configurações</a>
+                    <a class="dropdown-item" href="#">Avisos</a>
+                    <form th:action="@{/sair}" method="post" class="d-inline">
+                        <button type="submit" class="dropdown-item">
+                            Sair
+                        </button>
+                    </form>
+                    <div sec:authorize="!isAuthenticated()">
+                        <a class="dropdown-item" th:href="@{/login}">Entrar</a> <!-- NAO ESTA SENDO UTILIZADO -->
+                    </div>
+                </div>
             </div>
 
         </nav>
