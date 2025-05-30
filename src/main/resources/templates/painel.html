@@ -73,12 +73,10 @@
                         Olá, <span sec:authentication="principal.nome">Nome do Usuário</span>
                     </span>
                 </div>
-                <div sec:authorize="!isAuthenticated()">
-                    <a class="btn btn-primary" th:href="@{/login}">Entrar</a>
-                </div>
+
             </div>
 
-            <div class="dropdown show">
+            <div class="dropdown ms-2">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Opções
                 </a>
@@ -92,6 +90,9 @@
                             Sair
                         </button>
                     </form>
+                </div>
+                <div sec:authorize="!isAuthenticated()">
+                    <a class="btn btn-primary" th:href="@{/login}">Entrar</a>
                 </div>
             </div>
 
