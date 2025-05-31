@@ -51,8 +51,9 @@ public class UsuarioController {
         String senhaCodificada = passwordEncoder.encode(usuario.getSenha());
         usuario.setSenha(senhaCodificada);
 
-        // Definir uma role padrão para novos usuários
-        usuario.setRole(UsuarioRole.USER); // Ou UsuarioRole.ADMIN se for um cadastro de admin específico
+        // Definir uma role para novos usuários
+        UsuarioRole role = usuario.getRole();
+        usuario.setRole(role);
 
         ur.save(usuario);
         attributes.addFlashAttribute("mensagemSucesso", "Usuário cadastrado com sucesso!");

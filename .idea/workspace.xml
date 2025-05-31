@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b5af7163-679c-46a0-9f0f-c43ddbb81d2f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/bootcampduo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/bootcampduo.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/bootcampduo.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/bootcampduo.trace.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/fesa/bootcampduo/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/fesa/bootcampduo/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/fesa/bootcampduo/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/fesa/bootcampduo/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login/cadastro.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login/cadastro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/painel.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/painel.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +66,6 @@
   <component name="RunManager">
     <configuration name="BootcampduoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="bootcampduo" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="br.edu.fesa.bootcampduo.BootcampduoApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -87,10 +90,22 @@
       <updated>1748531626756</updated>
       <workItem from="1748531627893" duration="4488000" />
       <workItem from="1748558454644" duration="57000" />
+      <workItem from="1748702952055" duration="3650000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

@@ -13,6 +13,16 @@ INSERT INTO users (id, nome, email, senha, ROLE) VALUES -- ROLE em maiúsculo
 (RANDOM_UUID(), 'Colaborador Um', 'user@empresa.com', '$2a$10$b.rP.b.H7kX9jA8sS8xPqOQ8sA7i.kU5gL0i.oP1nQ8mP2jR3sYtU', 'USER');
 -- O hash acima é apenas um EXEMPLO para "user123", USE O SEU GERADO!
 
+-- Usuário DevOps
+-- Substitua o hash pela senha desejada (ex: hash de "devops123")
+INSERT INTO users (id, nome, email, senha, ROLE) VALUES
+(RANDOM_UUID(), 'DevOps', 'devops@empresa.com', '$2a$10$EXEMPLOHASHDEVOPS1234567890abcdefghi', 'DEVOPS');
+
+-- Usuário Inteligência (Intel)
+-- Substitua o hash pela senha desejada (ex: hash de "intel123")
+INSERT INTO users (id, nome, email, senha, ROLE) VALUES
+(RANDOM_UUID(), 'Inteligência Artificial', 'intel@empresa.com', '$2a$10$EXEMPLOHASHINTEL1234567890abcdefghi', 'INTEL');
+
 -- Você pode adicionar mais usuários aqui se necessário
 -- Exemplo de outro usuário comum:
 -- INSERT INTO users (id, nome, email, senha, role) VALUES

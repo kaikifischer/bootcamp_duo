@@ -30,4 +30,5 @@ public class LoginController {
         }
         return "login/login"; // Retorna a view login/login.html
     }
+
 }
