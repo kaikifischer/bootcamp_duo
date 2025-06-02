@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>AppFinanceT</title>
 
-        <!-- Bootstrap 5 apenas -->
+        <!-- Bootstrap 5 -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
         <!-- Chartist -->
@@ -24,28 +24,40 @@
                 top: 0;
                 bottom: 0;
                 left: 0;
-                z-index: 100;
-                padding: 90px 0 0;
+                z-index: 100; /* Ensure sidebar is above content but below sticky navbar */
+                padding: 0; /* Padding will be handled by navbar height + some */
+                padding-top: 70px; /* Approximate height of navbar, adjust if navbar height changes */
                 box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+                width: 250px; /* Example fixed width for sidebar */
+                overflow-y: auto; /* Allow scrolling in sidebar if content is long */
             }
 
-            @media (max-width: 767.98px) {
+            @media (max-width: 991.98px) { /* Corresponds to 'lg' breakpoint for navbar-expand-lg */
                 .sidebar {
-                    top: 11.5rem;
-                    padding: 0;
+                    padding-top: 0; /* Reset padding-top when sidebar is collapsible */
+                    /* top: 56px; /* Adjust if navbar height is different when collapsed */
+                    /* For Bootstrap 5, the .collapse class handles visibility, no need for display:none here directly */
                 }
             }
+            
+            .content-pusher { /* New class to push content right of the sidebar */
+                margin-left: 250px; /* Same as sidebar width */
+                padding-top: 70px; /* Space for the sticky navbar */
+            }
+
+            @media (max-width: 991.98px) { /* When sidebar collapses */
+                .content-pusher {
+                    margin-left: 0; /* Content takes full width */
+                }
+            }
+
 
             .navbar {
                 box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
-            }
-
-            @media (min-width: 767.98px) {
-                .navbar {
-                    top: 0;
-                    position: sticky;
-                    z-index: 999;
-                }
+                /* position: sticky and top:0 make it stick to the top */
+                position: sticky;
+                top: 0;
+                z-index: 1020; /* Higher than sidebar to stay on top */
             }
 
             .sidebar .nav-link {
@@ -59,76 +71,115 @@
     </head>
     <body>
 
-
+        <!-- Navbar Fragment MODIFICADO -->
         <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light p-3">
-            <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
-                <a class="navbar-brand" href="#">APPFinanceT</a>
-                <button class="navbar-toggler d-md-none collapsed mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="container-fluid">
+                <!-- Navbar brand -->
+                <a class="navbar-brand" th:href="@{/}">APPFinanceT</a>
+
+                <!-- Botão para colapsar a SIDEBAR em telas menores -->
+                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-            </div>
-            <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
-                <div sec:authorize="isAuthenticated()">
-                    <span class="btn btn-secondary disabled">
-                        Olá, <span sec:authentication="principal.nome">Nome do Usuário</span>
-                    </span>
+                
+                <!-- Conteúdo da Navbar que colapsa (se houver outros itens de menu aqui) -->
+                <!-- Se os botões de ação devem colapsar com um toggler próprio da navbar,
+                     eles precisariam estar dentro de um <div class="collapse navbar-collapse">
+                     e um segundo navbar-toggler seria necessário.
+                     Para este caso, eles ficarão visíveis e se ajustarão ou quebrarão linha.
+                -->
+
+                <!-- Botões à direita -->
+                <div class="ms-auto d-flex align-items-center">
+                    <!-- Conteúdo para usuários autenticados -->
+                    <div sec:authorize="isAuthenticated()" class="d-flex align-items-center">
+                        <span class="btn btn-light disabled me-2">
+                            Olá, <span sec:authentication="principal.nome">Nome do Usuário</span>
+                        </span>
+                        <a class="btn btn-outline-secondary me-2" th:href="@{/configuracoes}">Configurações</a>
+                        <a class="btn btn-outline-info me-2" href="#">Avisos</a> <!-- Defina o th:href apropriado -->
+                        <form method="post" th:action="@{/sair}" class="d-inline">
+                            <button type="submit" class="btn btn-outline-danger">Sair</button>
+                        </form>
+                    </div>
+
+                    <!-- Botão de login para usuários não autenticados -->
+                    <div sec:authorize="!isAuthenticated()">
+                        <a class="btn btn-primary" th:href="@{/login}">Entrar</a>
+                    </div>
                 </div>
-
             </div>
-
-            <div class="dropdown ms-2">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Opções
-                </a>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" th:href="@{/configuracoes}">Configurações</a>
-                    <a class="dropdown-item" href="#">Avisos</a>
-                    <form th:action="@{/sair}" method="post" class="d-inline">
-                        <button type="submit" class="dropdown-item">
-                            Sair
-                        </button>
-                    </form>
-                </div>
-                <div sec:authorize="!isAuthenticated()">
-                    <a class="btn btn-primary" th:href="@{/login}">Entrar</a>
-                </div>
-            </div>
-
         </nav>
 
-        <nav th:fragment="sidebar" id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="position-sticky">
+        <!-- Sidebar Fragment -->
+        <!-- d-lg-block fará com que seja visível em 'lg' e acima.
+             'collapse' e 'navbar-collapse' (se usado para itens da navbar) 
+             são para o comportamento de colapso.
+             Para uma sidebar que é controlada pelo toggler da navbar, usamos 'collapse' e 'd-lg-block'.
+        -->
+        <nav th:fragment="sidebar" id="sidebar" class="bg-light sidebar collapse d-lg-block">
+            <div class="position-sticky pt-3"> <!-- pt-3 para dar um espaço do topo da sidebar -->
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" th:href="@{/}"> <i data-feather="home"></i>
+                        <a class="nav-link" aria-current="page" th:href="@{/}">
+                            <i data-feather="home"></i>
                             <span class="ms-2">Dashboard</span>
                         </a>
                     </li>
+                    <!-- Adicione outros itens da sidebar aqui conforme necessário -->
+                    <!-- Exemplo de item que você tinha:
+                    <li class="nav-item" sec:authorize="hasAnyRole('ADMIN', 'USER')">
+                        <a class="nav-link" th:href="@{/controlePessoa}">
+                            <i data-feather="users"></i>
+                            <span class="ms-2">Funcionários</span>
+                        </a>
+                    </li>
+                    -->
                 </ul>
             </div>
-        </nav>  
+        </nav>
+
+        <!-- Este div envolveria o conteúdo principal da sua página para empurrá-lo
+             para a direita da sidebar em telas grandes.
+             As páginas que usam este painel colocariam seu conteúdo dentro de um
+             elemento com esta classe, ou aplicariam esta classe ao seu container principal.
+             Exemplo:
+             <div class="content-pusher">
+                 <div th:replace="~{pagina_especifica :: conteudo}"></div>
+             </div>
+        -->
 
         <!-- JS scripts -->
+        <!-- Idealmente, os scripts podem ser um fragmento também, ou colocados no final do body
+             das páginas que usam este painel, ou aqui se for um layout completo.
+             Para fragmentos, é comum colocar os scripts no final do body da página final.
+        -->
+        <th:block th:fragment="scripts">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+Y5n3zV9zzTtmI3UksdQRVvoxMfoo" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+            <script src="https://unpkg.com/feather-icons"></script>
+            <script>
+                if (typeof feather !== 'undefined') {
+                    feather.replace();
+                }
 
-        <!-- Bootstrap Bundle com Popper (mantenha só este) -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+Y5n3zV9zzTtmI3UksdQRVvoxMfoo" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
-        <script src="https://unpkg.com/feather-icons"></script>
-        <script>
-            feather.replace();
-
-            // Exemplo de gráfico
-            new Chartist.Line('#traffic-chart', {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-                series: [
-                    [23000, 25000, 19000, 34000, 56000, 64000]
-                ]
-            }, {
-                low: 0,
-                showArea: true
-            });
-        </script>
+                // Exemplo de gráfico - mova para páginas específicas se não for global
+                // if (document.getElementById('traffic-chart')) {
+                //     new Chartist.Line('#traffic-chart', {
+                //         labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                //         series: [
+                //             [23000, 25000, 19000, 34000, 56000, 64000]
+                //         ]
+                //     }, {
+                //         low: 0,
+                //         showArea: true
+                //     });
+                // }
+            </script>
+        </th:block>
+        <!-- Para usar o fragmento de scripts em outras páginas:
+        <div th:replace="~{painel :: scripts}"></div>
+        -->
 
     </body>
 </html>
