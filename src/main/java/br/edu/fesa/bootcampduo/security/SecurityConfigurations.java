@@ -51,60 +51,55 @@ public class SecurityConfigurations {
                                 AntPathRequestMatcher.antMatcher("/libs/**"),
                                 AntPathRequestMatcher.antMatcher("/static/**"),
                                 AntPathRequestMatcher.antMatcher("/bootstrap/**"),
+                                AntPathRequestMatcher.antMatcher("/"), 
                                 AntPathRequestMatcher.antMatcher("/login"),
-                                AntPathRequestMatcher.antMatcher("/logar"),
-                                AntPathRequestMatcher.antMatcher("/cadastrarUsuario"),
-                                AntPathRequestMatcher.antMatcher("/bootcamp-duo/**"),
-                                AntPathRequestMatcher.antMatcher("/footer.html"),
-                                AntPathRequestMatcher.antMatcher("/header.html")
+                                AntPathRequestMatcher.antMatcher("/logar"), 
+                                AntPathRequestMatcher.antMatcher("/cadastrarUsuario"), 
+                                AntPathRequestMatcher.antMatcher("/bootcamp-duo/**"), 
+                                AntPathRequestMatcher.antMatcher("/footer.html"),    
+                                AntPathRequestMatcher.antMatcher("/header.html")      
                         ).permitAll()
                         .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/cadastrarUsuario")).permitAll()
                         
-                        .requestMatchers(AntPathRequestMatcher.antMatcher("/")).hasRole("ADMIN") 
-                        // .requestMatchers(AntPathRequestMatcher.antMatcher("/user_page/**")).hasRole("USER") // REGRA REMOVIDA
-                        .requestMatchers(AntPathRequestMatcher.antMatcher("/devops/**")).hasRole("DEVOPS")
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/admin/**")).hasRole("ADMIN") 
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/devops/**")).hasRole("DEVOPS") 
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/intel/**")).hasRole("INTEL") 
                         
-                        // Ajuste /configuracoes se USER não deveria ter acesso
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/configuracoes/**")).hasAnyRole("ADMIN", "DEVOPS", "INTEL") 
-                        // Ajuste /controlePessoa se USER não deveria ter acesso (parece ser ADMIN/USER)
-                        // Se USER não existe mais, talvez /controlePessoa seja só ADMIN ou precise de nova lógica.
-                        // Por agora, vou manter como estava, mas você deve revisar:
-                        .requestMatchers(AntPathRequestMatcher.antMatcher("/controlePessoa/**")).hasRole("ADMIN") // Se apenas ADMIN acessa
-                        // .requestMatchers(AntPathRequestMatcher.antMatcher("/controlePessoa/**")).hasAnyRole("ADMIN", "DEVOPS", "INTEL") // Se outras roles acessam
-                        .requestMatchers(AntPathRequestMatcher.antMatcher("/cadastrarFuncionario/**")).hasRole("ADMIN")
-                        .requestMatchers(AntPathRequestMatcher.antMatcher("/listarFuncionarios/**")).hasRole("ADMIN") // Exemplo: se apenas ADMIN pode listar
-                        // .requestMatchers(AntPathRequestMatcher.antMatcher("/listarFuncionarios/**")).hasAnyRole("ADMIN", "DEVOPS", "INTEL") // Se outras roles também podem
+                        // Linhas removidas para funcionalidades de funcionário:
+                        // .requestMatchers(AntPathRequestMatcher.antMatcher("/controlePessoa/**")).hasRole("ADMIN") 
+                        // .requestMatchers(AntPathRequestMatcher.antMatcher("/cadastrarFuncionario/**")).hasRole("ADMIN")
+                        // .requestMatchers(AntPathRequestMatcher.antMatcher("/listarFuncionarios/**")).hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/login")
-                        .loginProcessingUrl("/logar")
-                        .usernameParameter("email")
-                        .passwordParameter("senha")
-                        .successHandler(roleBasedAuthenticationSuccessHandler)
-                        .failureUrl("/login?error=true")
-                        .permitAll()
+                        .loginPage("/login") 
+                        .loginProcessingUrl("/logar") 
+                        .usernameParameter("email") 
+                        .passwordParameter("senha") 
+                        .successHandler(roleBasedAuthenticationSuccessHandler) 
+                        .failureUrl("/login?error=true") 
+                        .permitAll() 
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/sair")
-                        .logoutSuccessUrl("/login?logout=true")
-                        .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID")
-                        .permitAll()
+                        .logoutUrl("/sair") 
+                        .logoutSuccessUrl("/login?logout=true") 
+                        .invalidateHttpSession(true) 
+                        .deleteCookies("JSESSIONID") 
+                        .permitAll() 
                 )
-                .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin()));
+                .headers(headers -> headers.frameOptions(frameOptionsConfig -> frameOptionsConfig.sameOrigin())); 
 
         return httpSecurity.build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(); 
     }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
+        return authenticationConfiguration.getAuthenticationManager(); 
     }
 }

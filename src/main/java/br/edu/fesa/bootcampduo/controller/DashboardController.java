@@ -10,10 +10,10 @@ import java.util.List;
 @Controller
 public class DashboardController {
 
-    @GetMapping("/") // Dashboard do Admin
+    @GetMapping("/admin")
     public String index(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         model.addAttribute("dados", List.of(List.of(10000, 20000, 15000, 30000, 25000, 40000)));
-        return "index";
+        return "admin";
     }
 
     @GetMapping("/devops")
