@@ -1,4 +1,3 @@
-
 package br.edu.fesa.bootcampduo.controller;
 
 import br.edu.fesa.bootcampduo.Enum.UsuarioRole; // Importar o Enum
@@ -9,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder; // Importar
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping; // Usar PostMapping para clareza
+import org.springframework.web.bind.annotation.PostMapping; // Usar PostMapping
 // import org.springframework.web.bind.annotation.RequestMapping; // Não mais estritamente necessário se usar Get/PostMapping
 // import org.springframework.web.bind.annotation.RequestMethod; // Não mais estritamente necessário
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;

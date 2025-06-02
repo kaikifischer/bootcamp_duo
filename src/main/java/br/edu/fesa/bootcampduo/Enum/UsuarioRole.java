@@ -15,8 +15,8 @@ package br.edu.fesa.bootcampduo.Enum;
 public enum UsuarioRole {
     ADMIN("admin"),
     DEVOPS("devops"),
-    INTEL("intel"),
-    USER("user");
+    INTEL("intel");
+    //USER("user");
     
     
     private String role;

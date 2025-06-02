@@ -3,7 +3,7 @@ package br.edu.fesa.bootcampduo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"br.edu.fesa.bootcampduo", "br.edu.fesa.bootcamp.service"}) // Adicione esta configuração
+@SpringBootApplication(scanBasePackages = {"br.edu.fesa.bootcampduo", "br.edu.fesa.bootcamp.service"})
 //@SpringBootApplication
 public class BootcampduoApplication {
 
