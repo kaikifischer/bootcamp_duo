@@ -12,14 +12,14 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                min-height: 100vh; /* Garante que o body ocupe toda a altura da viewport */
+                min-height: 100vh;
                 background-color: #6DC5D1;
-                padding-top: 20px; /* Espaçamento no topo */
-                padding-bottom: 20px; /* Espaçamento na base */
+                padding-top: 20px;
+                padding-bottom: 20px;
             }
             .register-container {
                 width: 100%;
-                max-width: 450px; /* Aumentei um pouco para acomodar melhor os campos */
+                max-width: 450px;
                 padding: 30px;
                 border-radius: 10px;
                 box-shadow: 0 0 15px rgba(0,0,0,0.1);
@@ -34,7 +34,8 @@
             <div th:if="${mensagemSucesso}" class="alert alert-success" th:text="${mensagemSucesso}"></div>
             <div th:if="${mensagem}" class="alert alert-danger" th:text="${mensagem}"></div>
             
-            <form th:action="@{/cadastrarUsuario}" th:object="${usuarioModel != null ? usuarioModel : new br.edu.fesa.bootcampduo.model.UsuarioModel()}" method="post">
+            <!-- Assumindo que o controller sempre envia 'usuarioModel' -->
+            <form th:action="@{/cadastrarUsuario}" th:object="${usuarioModel}" method="post">
                 <div class="form-group">
                     <label for="nome">Nome Completo:</label>
                     <input type="text" th:field="*{nome}" class="form-control" id="nome" placeholder="Digite seu nome completo" required>
@@ -45,7 +46,7 @@
                     <input type="email" th:field="*{email}" class="form-control" id="email" placeholder="Digite seu e-mail" required>
                     <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></small>
                 </div>
-                <div class="form-group">
+                <div class="form-grup">
                     <label for="senha">Senha:</label>
                     <input type="password" th:field="*{senha}" class="form-control" id="senha" placeholder="Digite sua senha" required>
                     <small th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" class="text-danger"></small>
@@ -55,9 +56,10 @@
                     <label for="rolePublica">Selecione seu Perfil:</label>
                     <select class="form-control" id="rolePublica" th:field="*{role}" required>
                         <option value="">-- Selecione --</option>
+                        <!-- TENTATIVA 1: Se UsuarioRole for um enum simples -->
                         <option th:each="roleOpt : ${rolesDisponiveis}"
                                 th:value="${roleOpt}"
-                                th:text="${roleOpt.displayName}"></option>
+                                th:text="${roleOpt.name()}"></option> 
                     </select>
                     <small th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="text-danger"></small>
                 </div>
