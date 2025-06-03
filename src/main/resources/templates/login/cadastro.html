@@ -6,7 +6,6 @@
         <title>Cadastro de Novo Usuário</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <style>
-            /* Seu CSS aqui */
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
             body {
                 font-family: 'Inter', sans-serif;
@@ -36,7 +35,6 @@
             <div th:if="${mensagem}" class="alert alert-danger" th:text="${mensagem}"></div>
             
             <!-- Assumindo que o controller sempre envia 'usuarioModel' -->
-            <!-- Se não, mantenha sua versão original com o ternário, mas VERIFIQUE o FQCN -->
             <form th:action="@{/cadastrarUsuario}" th:object="${usuarioModel}" method="post">
                 <div class="form-group">
                     <label for="nome">Nome Completo:</label>
@@ -48,7 +46,7 @@
                     <input type="email" th:field="*{email}" class="form-control" id="email" placeholder="Digite seu e-mail" required>
                     <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></small>
                 </div>
-                <div class="form-grup"> <!-- ERRO DE DIGITAÇÃO AQUI? Deveria ser form-group -->
+                <div class="form-grup">
                     <label for="senha">Senha:</label>
                     <input type="password" th:field="*{senha}" class="form-control" id="senha" placeholder="Digite sua senha" required>
                     <small th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" class="text-danger"></small>
@@ -62,13 +60,6 @@
                         <option th:each="roleOpt : ${rolesDisponiveis}"
                                 th:value="${roleOpt}"
                                 th:text="${roleOpt.name()}"></option> 
-                        <!-- TENTATIVA 2: Se você implementou getDisplayName() no enum UsuarioRole -->
-                        <!-- E comente a TENTATIVA 1 acima se for usar esta -->
-                        <!--
-                        <option th:each="roleOpt : ${rolesDisponiveis}"
-                                th:value="${roleOpt}"
-                                th:text="${roleOpt.displayName}"></option>
-                        -->
                     </select>
                     <small th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="text-danger"></small>
                 </div>

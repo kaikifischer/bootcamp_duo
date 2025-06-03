@@ -57,8 +57,7 @@ public class SecurityConfigurations {
                                 AntPathRequestMatcher.antMatcher("/cadastrarUsuario"), 
                                 AntPathRequestMatcher.antMatcher("/bootcamp-duo/**"), 
                                 AntPathRequestMatcher.antMatcher("/footer.html"),    
-                                AntPathRequestMatcher.antMatcher("/header.html"),
-                                AntPathRequestMatcher.antMatcher("/error")
+                                AntPathRequestMatcher.antMatcher("/header.html")
                         ).permitAll()
                         .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/cadastrarUsuario")).permitAll()
                         
