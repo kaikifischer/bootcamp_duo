@@ -10,6 +10,8 @@ package br.edu.fesa.bootcampduo.model;
  */
 import br.edu.fesa.bootcampduo.Enum.UsuarioRole;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern; // Importação para @Pattern
+import jakarta.validation.constraints.Size;    // Importação para @Size (opcional, pode ser parte da regex)
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -36,6 +38,11 @@ public class UsuarioModel implements UserDetails {
     private String email; // Será usado como username
 
     @Column(nullable = false)
+    // @Size(min = 8, message = "A senha deve ter no mínimo 8 caracteres.") // Verificação básica de tamanho (a regex também cobre isso)
+    @Pattern(
+        regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?~]).{8,}$",
+        message = "A senha deve ter no mínimo 8 caracteres, incluindo uma letra maiúscula, uma minúscula, um número e um caractere especial."
+    )
     private String senha;
 
     @Enumerated(EnumType.STRING)

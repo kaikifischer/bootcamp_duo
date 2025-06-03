@@ -25,6 +25,25 @@
                 box-shadow: 0 0 15px rgba(0,0,0,0.1);
                 background-color: #ffffff;
             }
+            .password-strength-feedback ul {
+                list-style-type: none;
+                padding-left: 0;
+                font-size: 0.875em;
+            }
+            .password-strength-feedback ul li.valid {
+                color: green;
+            }
+            .password-strength-feedback ul li.invalid {
+                color: red;
+            }
+            .password-strength-feedback ul li.valid::before {
+                content: '\2713'; /* Marca de seleção (Checkmark) */
+                margin-right: 5px;
+            }
+            .password-strength-feedback ul li.invalid::before {
+                content: '\2717'; /* Marca de X (X mark) */
+                margin-right: 5px;
+            }
         </style>
     </head>
     <body>
@@ -34,8 +53,7 @@
             <div th:if="${mensagemSucesso}" class="alert alert-success" th:text="${mensagemSucesso}"></div>
             <div th:if="${mensagem}" class="alert alert-danger" th:text="${mensagem}"></div>
             
-            <!-- Assumindo que o controller sempre envia 'usuarioModel' -->
-            <form th:action="@{/cadastrarUsuario}" th:object="${usuarioModel}" method="post">
+            <form id="publicCadastroForm" th:action="@{/cadastrarUsuario}" th:object="${usuarioModel}" method="post">
                 <div class="form-group">
                     <label for="nome">Nome Completo:</label>
                     <input type="text" th:field="*{nome}" class="form-control" id="nome" placeholder="Digite seu nome completo" required>
@@ -46,9 +64,17 @@
                     <input type="email" th:field="*{email}" class="form-control" id="email" placeholder="Digite seu e-mail" required>
                     <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></small>
                 </div>
-                <div class="form-grup">
-                    <label for="senha">Senha:</label>
+                <div class="form-group"> <label for="senha">Senha:</label>
                     <input type="password" th:field="*{senha}" class="form-control" id="senha" placeholder="Digite sua senha" required>
+                    <div id="password-strength-feedback-public" class="password-strength-feedback mt-2">
+                        <ul>
+                            <li id="length-public">Mínimo 8 caracteres</li>
+                            <li id="uppercase-public">Uma letra maiúscula</li>
+                            <li id="lowercase-public">Uma letra minúscula</li>
+                            <li id="number-public">Um número</li>
+                            <li id="special-public">Um caractere especial</li>
+                        </ul>
+                    </div>
                     <small th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" class="text-danger"></small>
                 </div>
                 
@@ -56,7 +82,6 @@
                     <label for="rolePublica">Selecione seu Perfil:</label>
                     <select class="form-control" id="rolePublica" th:field="*{role}" required>
                         <option value="">-- Selecione --</option>
-                        <!-- TENTATIVA 1: Se UsuarioRole for um enum simples -->
                         <option th:each="roleOpt : ${rolesDisponiveis}"
                                 th:value="${roleOpt}"
                                 th:text="${roleOpt.name()}"></option> 
@@ -77,5 +102,59 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const passwordField = document.getElementById('senha');
+            // IDs dos elementos de feedback específicos para esta página
+            const lengthCheck = document.getElementById('length-public');
+            const uppercaseCheck = document.getElementById('uppercase-public');
+            const lowercaseCheck = document.getElementById('lowercase-public');
+            const numberCheck = document.getElementById('number-public');
+            const specialCheck = document.getElementById('special-public');
+            const form = document.getElementById('publicCadastroForm');
+
+            function validatePassword(password) {
+                const hasMinLength = password.length >= 8;
+                const hasUppercase = /[A-Z]/.test(password);
+                const hasLowercase = /[a-z]/.test(password);
+                const hasNumber = /\d/.test(password);
+                const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(password);
+
+                updateCheck(lengthCheck, hasMinLength);
+                updateCheck(uppercaseCheck, hasUppercase);
+                updateCheck(lowercaseCheck, hasLowercase);
+                updateCheck(numberCheck, hasNumber);
+                updateCheck(specialCheck, hasSpecial);
+
+                return hasMinLength && hasUppercase && hasLowercase && hasNumber && hasSpecial;
+            }
+
+            function updateCheck(element, isValid) {
+                if (isValid) {
+                    element.classList.remove('invalid');
+                    element.classList.add('valid');
+                } else {
+                    element.classList.remove('valid');
+                    element.classList.add('invalid');
+                }
+            }
+            
+            if (passwordField) {
+                passwordField.addEventListener('input', function () {
+                    validatePassword(this.value);
+                });
+            }
+
+            if (form) {
+                 form.addEventListener('submit', function(event) {
+                    if (passwordField && !validatePassword(passwordField.value)) {
+                        event.preventDefault(); // Impede o envio do formulário
+                        alert('A senha não atende aos critérios de segurança. Por favor, verifique os requisitos.');
+                         // Você pode adicionar uma lógica mais sofisticada para exibir o erro
+                    }
+                });
+            }
+        });
+        </script>
     </body>
 </html>
