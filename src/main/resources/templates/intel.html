@@ -1,25 +1,150 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="~{painel :: header}"></head>
+<head>
+    <!-- Inclui o header do painel (Bootstrap 5 CSS, etc.) -->
+    <th:block th:replace="~{painel :: header}"></th:block>
+
+    <!-- Título específico da página -->
+    <title>Inteligência Artificial - AppFinanceT</title>
+
+    <!-- Estilos específicos para esta página de IA (do seu novo HTML) -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <!-- Roboto é uma boa alternativa se Inter (do painel) não for o desejado aqui -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        /* Estilos do seu HTML de IA - Adaptados para coexistir com o painel */
+        /* Seletor mais específico para aplicar o fundo escuro apenas ao conteúdo desta página */
+        .ia-content-wrapper {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Roboto', sans-serif; /* Pode sobrescrever o 'Inter' do painel para esta seção */
+            padding-bottom: 20px; /* Espaço para o final do conteúdo */
+        }
+
+        .ia-content-wrapper .card {
+            background-color: #fff; /* Cor de fundo do card, se não definida, pode herdar */
+            border: 1px solid #333; /* Borda sutil para o card no tema escuro */
+        }
+
+        .ia-content-wrapper .card-text {
+            color: #212529; /* Cor escura para o texto dentro do card, padrão Bootstrap */
+        }
+
+        .ia-content-wrapper .container { /* Mantém o container centrado e com margens */
+            margin-top: 20px;
+            max-width: 960px; /* Limita a largura como no Bootstrap 4 .container */
+        }
+
+        .ia-content-wrapper .main-img, /* Mantido do seu original */
+        .ia-content-wrapper .img-fluid.uniform-img { /* Mantido do seu original */
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px; /* Espaço abaixo da imagem */
+        }
+
+        .ia-content-wrapper .description { /* Mantido do seu original */
+            padding: 20px 0;
+        }
+
+        /* Footer específico para esta página, se desejar, pode ser estilizado aqui */
+        /*
+        .ia-content-wrapper footer {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        */
+
+        .ia-content-wrapper .section-divider { /* Mantido do seu original */
+            border: 0;
+            height: 1px;
+            background: #444;
+            background-image: linear-gradient(to right, #333, #444, #333);
+            margin: 40px 0;
+        }
+
+        .ia-content-wrapper .page-title { /* Mantido do seu original */
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: #00bcd4; /* Ciano - Bootstrap 5: text-info */
+        }
+
+        .ia-content-wrapper .wine-red { /* Mantido do seu original */
+            color: #ff1744; /* Vermelho vinho - Bootstrap 5: text-danger pode ser uma alternativa */
+        }
+
+        .ia-content-wrapper .gray { /* Mantido do seu original */
+            color: #9e9e9e; /* Cinza - Bootstrap 5: text-muted */
+        }
+
+        .ia-content-wrapper .fancy-font { /* Mantido do seu original */
+            font-family: 'Roboto Mono', monospace;
+        }
+        .ia-content-wrapper .dancing-script-font { /* Para usar a Dancing Script */
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .ia-content-wrapper .font-size-large { /* Renomeado para evitar conflito com .font-size */
+            font-size: 1.5em;
+        }
+
+        /* Ajustes para o título principal h1 */
+        .ia-content-wrapper h1.wine-red.fancy-font {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
 <body>
+    <!-- Navbar do painel -->
     <div th:replace="~{painel :: navbar}"></div>
+    
+    <!-- Sidebar do painel (será incluída mas ficará invisível devido ao CSS no painel.html) -->
     <div th:replace="~{painel :: sidebar}"></div>
 
-    <div class="content" style="margin-left: 15px; margin-top: 70px; padding: 20px;">
-        <div class="container mt-4">
-            <h3>Página Inteligência Artificial</h3>
-            <hr>
-            <p>Bem-vindo, <span sec:authentication="principal.nome" style="font-weight: bold;"></span>!</p>
-            <p>Sua sessão como Analista de Inteligência Artificial está ativa. Utilize o menu acima para sair do sistema.</p>
-        </div>
-    </div>
+    <!-- Conteúdo principal da página -->
+    <main class="content-pusher">
+        <!-- Wrapper para aplicar estilos escuros específicos desta página -->
+        <div class="ia-content-wrapper">
+            <div class="container"> <!-- Usando a classe container para centralizar e limitar a largura -->
+                
+                <!-- Título da página vindo do seu HTML de IA -->
+                <h1 class="wine-red fancy-font">Inteligência Artificial (IA)</h1>
+                <hr class="section-divider">
+
+                <!-- Conteúdo do card vindo do seu HTML de IA -->
+                <div class="card mb-4">
+                    <!-- Certifique-se que o caminho da imagem está correto para ser servido pelo Spring Boot -->
+                    <img th:src="@{/images/inteligenciaartificial/ia001.png}" class="img-fluid uniform-img" alt="Inteligência Artificial">
+                    <div class="card-body">
+                        <p class="card-text">A <strong class="wine-red fancy-font font-size-large">Inteligência Artificial</strong> é um campo da computação que busca criar sistemas capazes de simular a inteligência humana. Ela está presente em assistentes virtuais, sistemas de recomendação, carros autônomos e muito mais.</p>
+                        <p class="card-text">Com o avanço da IA, algoritmos de aprendizado de máquina conseguem analisar grandes volumes de dados, identificar padrões e tomar decisões com base em informações complexas. Isso tem revolucionado setores como saúde, finanças, educação e segurança.</p>
+                        <p class="card-text">Modelos de linguagem, como os usados em chatbots e tradutores automáticos, são exemplos de IA que aprendem com bilhões de palavras para gerar respostas coerentes e contextuais. Esses modelos são treinados com redes neurais profundas e técnicas de aprendizado supervisionado e não supervisionado.</p>
+                        <p class="card-text">O futuro da IA promete ainda mais inovações, com sistemas cada vez mais autônomos, éticos e integrados ao cotidiano. Estudar e entender a IA é essencial para quem deseja atuar nas profissões do futuro e contribuir para o desenvolvimento de tecnologias responsáveis.</p>
+                    </div>
+                </div>
+
+                <hr class="section-divider">
+
+                <!-- Se você tinha um footer específico para esta página, ele iria aqui -->
+                <!-- Exemplo:
+                <footer>
+                    <p>© 2024 Bootcamp Duo - Conteúdo de IA.</p>
+                </footer>
+                -->
+
+            </div> <!-- Fim do .container -->
+        </div> <!-- Fim do .ia-content-wrapper -->
+    </main>
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+Y5n3zV9zzTtmI3UksdQRVvoxMfoo" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <script>
-        if (typeof feather !== 'undefined') {
-            feather.replace();
-        }
-    </script>
+    <!-- Scripts globais do painel (Bootstrap 5 JS, etc.) -->
+    <div th:replace="~{painel :: scripts}"></div>
+
+    <!-- Se houver scripts JS específicos para esta página de IA, adicione-os aqui -->
+    <!-- Os scripts para importar header/footer e Bootstrap 4 foram removidos -->
 </body>
 </html>
