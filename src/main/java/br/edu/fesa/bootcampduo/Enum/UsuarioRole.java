@@ -13,18 +13,27 @@ package br.edu.fesa.bootcampduo.Enum;
  * @author Kaiki
  */
 public enum UsuarioRole {
-    ADMIN("admin"),
-    DEVOPS("devops"),
-    INTEL("intel");
-    //USER("user");
+    ADMIN("Administrador"),
+    DEVOPS("DevOps"),
+    INTEL("Intel");
+    //USER("user"); // Comentado no seu original
     
+    private String displayName; // Para exibição no formulário
+    // private String role; // Seu campo original, se precisar manter para o método getRole()
     
-    private String role;
-    
-    UsuarioRole(String role){
-        this.role = role;
+    UsuarioRole(String displayName){
+        this.displayName = displayName;
+        // this.role = role; // Se o construtor original era (String role) e você quer manter o campo 'role'
     }
+
+    public String getDisplayName(){ // Getter para o displayName
+        return displayName;
+    }
+    
+    // Seu método getRole() original. 
+    // Se 'role' era o nome do enum em minúsculo, você pode fazer:
     public String getRole(){
-        return role;
+        return this.name().toLowerCase(); 
+        // Ou return this.role; se você inicializou o campo 'role' no construtor.
     }
 }

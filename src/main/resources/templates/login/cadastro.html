@@ -1,77 +1,77 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cadastro</title>
+        <title>Cadastro de Novo Usuário</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-
             body {
-                font-family: 'Inter', sans-serif; /* Aplica a fonte Inter com fallback para fontes sans-serif */
+                font-family: 'Inter', sans-serif;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: 100vh;
+                min-height: 100vh; /* Garante que o body ocupe toda a altura da viewport */
                 background-color: #6DC5D1;
+                padding-top: 20px; /* Espaçamento no topo */
+                padding-bottom: 20px; /* Espaçamento na base */
             }
             .register-container {
                 width: 100%;
-                max-width: 400px;
-                padding: 20px;
+                max-width: 450px; /* Aumentei um pouco para acomodar melhor os campos */
+                padding: 30px;
                 border-radius: 10px;
-                box-shadow: 10px 10px 10px 10px rgba(0.1, 0.1, 0.1, 0.1);
+                box-shadow: 0 0 15px rgba(0,0,0,0.1);
                 background-color: #ffffff;
             }
         </style>
     </head>
     <body>
         <div class="register-container">
-            <h2 class="text-center mb-4">Cadastro</h2>
-            <form method="post">
+            <h2 class="text-center mb-4">Crie sua Conta</h2>
+
+            <div th:if="${mensagemSucesso}" class="alert alert-success" th:text="${mensagemSucesso}"></div>
+            <div th:if="${mensagem}" class="alert alert-danger" th:text="${mensagem}"></div>
+            
+            <form th:action="@{/cadastrarUsuario}" th:object="${usuarioModel != null ? usuarioModel : new br.edu.fesa.bootcampduo.model.UsuarioModel()}" method="post">
                 <div class="form-group">
-                    <label for="username">Nome de Usuário</label>
-                    <input type="text" name="nome" class="form-control" id="username" placeholder="Digite seu nome de usuário">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" th:field="*{nome}" class="form-control" id="nome" placeholder="Digite seu nome completo" required>
+                    <small th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></small>
                 </div>
                 <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input type="email"  name="email" class="form-control" id="email" placeholder="Digite seu e-mail">
+                    <label for="email">E-mail:</label>
+                    <input type="email" th:field="*{email}" class="form-control" id="email" placeholder="Digite seu e-mail" required>
+                    <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></small>
                 </div>
                 <div class="form-group">
-                    <label for="password">Senha</label>
-                    <input type="password" name="senha" class="form-control" id="password" placeholder="Digite sua senha">
+                    <label for="senha">Senha:</label>
+                    <input type="password" th:field="*{senha}" class="form-control" id="senha" placeholder="Digite sua senha" required>
+                    <small th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" class="text-danger"></small>
                 </div>
-                <div class="form-group">
-                    <label for="confirmPassword">Confirme sua Senha</label>
-                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirme sua senha">
-                </div>
-                <!-- Grupo de Radio Buttons -->
+                
                 <div class="form-group mt-3">
-                    <label>Selecione seu role:</label><br>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="role" id="devops" value="DEVOPS">
-                        <label class="form-check-label" for="devops">Devops</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="role" id="intel" value="INTEL">
-                        <label class="form-check-label" for="intel">Intel</label>
-                    </div>
-                    <!--                    
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="role" id="admin" value="ADMIN">
-                        <label class="form-check-label" for="admin">Admin</label>
-                    </div>
-                    -->
+                    <label for="rolePublica">Selecione seu Perfil:</label>
+                    <select class="form-control" id="rolePublica" th:field="*{role}" required>
+                        <option value="">-- Selecione --</option>
+                        <option th:each="roleOpt : ${rolesDisponiveis}"
+                                th:value="${roleOpt}"
+                                th:text="${roleOpt.displayName}"></option>
+                    </select>
+                    <small th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="text-danger"></small>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-block">Cadastrar</button><br>
-                <a href="/">Voltar</a>
+                <button type="submit" class="btn btn-primary btn-block mt-3">Cadastrar</button>
+                <div class="text-center mt-3">
+                    <a th:href="@{/login}">Já tem uma conta? Faça Login</a>
+                </div>
+                 <div class="text-center mt-2">
+                    <a th:href="@{/}">Voltar para a Página Inicial</a>
+                </div>
             </form>
         </div>
 
-        <!-- Scripts do Bootstrap -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

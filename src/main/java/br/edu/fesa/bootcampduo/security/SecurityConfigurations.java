@@ -61,15 +61,15 @@ public class SecurityConfigurations {
                         ).permitAll()
                         .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/cadastrarUsuario")).permitAll()
                         
+                        // Rotas específicas de role
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/admin/**")).hasRole("ADMIN") 
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/devops/**")).hasRole("DEVOPS") 
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/intel/**")).hasRole("INTEL") 
                         
-                        .requestMatchers(AntPathRequestMatcher.antMatcher("/configuracoes/**")).hasAnyRole("ADMIN", "DEVOPS", "INTEL") 
-                        // Linhas removidas para funcionalidades de funcionário:
-                        // .requestMatchers(AntPathRequestMatcher.antMatcher("/controlePessoa/**")).hasRole("ADMIN") 
-                        // .requestMatchers(AntPathRequestMatcher.antMatcher("/cadastrarFuncionario/**")).hasRole("ADMIN")
-                        // .requestMatchers(AntPathRequestMatcher.antMatcher("/listarFuncionarios/**")).hasRole("ADMIN")
+                        // ADMIN: Gerenciamento de usuários e CADASTRO DE NOVO USUÁRIO
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/gerenciarUsuarios/**")).hasRole("ADMIN")
+                        .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.GET,"/admin/usuarios/novo")).hasRole("ADMIN")
+                        .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST,"/admin/usuarios/salvar")).hasRole("ADMIN") 
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
