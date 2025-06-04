@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Erro</title>
+        <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: #f8f9fa;
+                text-align: center;
+            }
+            .error-container {
+                padding: 40px;
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                max-width: 500px;
+            }
+            .error-container h1 {
+                color: #dc3545;
+                margin-bottom: 20px;
+            }
+            .error-container p {
+                margin-bottom: 25px;
+                font-size: 1.1rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="error-container">
+            <h1>Ocorreu um Erro</h1>
+            <p th:if="${errorCode}">Código do Erro: <span th:text="${errorCode}"></span></p>
+            <p th:text="${errorMessage ?: 'Algo deu errado. Por favor, tente novamente mais tarde.'}"></p>
+        </div>
+    </body>
+</html>

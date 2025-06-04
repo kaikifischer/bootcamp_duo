@@ -8,6 +8,7 @@ import org.springframework.security.access.expression.SecurityExpressionHandler;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -81,7 +82,8 @@ public class SecurityConfigurations {
                                 AntPathRequestMatcher.antMatcher("/cadastrarUsuario"),
                                 AntPathRequestMatcher.antMatcher("/bootcamp-duo/**"),
                                 AntPathRequestMatcher.antMatcher("/footer.html"),
-                                AntPathRequestMatcher.antMatcher("/header.html")
+                                AntPathRequestMatcher.antMatcher("/header.html"),
+                                AntPathRequestMatcher.antMatcher("/error/**")
                         ).permitAll()
                         // .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/cadastrarUsuario")).permitAll() // Já coberto acima
 
@@ -110,6 +112,7 @@ public class SecurityConfigurations {
                         .deleteCookies("JSESSIONID")
                         .permitAll()
                 )
+                .exceptionHandling(Customizer.withDefaults())
                 .headers(headers -> headers.frameOptions(frameOptionsConfig -> frameOptionsConfig.sameOrigin()));
 
         return httpSecurity.build();

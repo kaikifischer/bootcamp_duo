@@ -58,16 +58,6 @@
         <h1>Acesso Negado</h1>
         <p>Você não tem permissão para acessar esta página.</p>
         <p>Por favor, volte para a sua área de acesso permitida ou para a página inicial.</p>
-
-        <a th:href="@{/}" class="btn btn-custom-home">Voltar para a Página Inicial</a>
-
-        <form th:action="@{/sair}" method="post" style="display: inline;" sec:authorize="isAuthenticated()">
-            <button type="submit" class="btn btn-custom-logout ml-2">Sair</button>
-        </form>
-
-         <a th:href="@{/login}" class="btn btn-custom-home ml-2" sec:authorize="!isAuthenticated()">
-            Ir para Login
-        </a>
     </div>
 
     <script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script> </body>
